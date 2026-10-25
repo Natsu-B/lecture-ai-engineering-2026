@@ -17,6 +17,7 @@
 
 - 取り組んだレベル：**実装**
 - やったこと：
+  - ローカル環境用に `flake.nix` を追加。`nix develop` でPython 3.12・uv・Git・GitHub CLIを用意し、`UV_PYTHON` でuvが使うPythonを指定する。依存パッケージは引き続き `uv sync --frozen` で導入する。Nixの構文解析は成功したが、環境起動と `flake.lock` 生成は制限により未検証。ネットワーク接続可能なホスト側で `nix flake lock` を実行して生成・固定する。
   - `app/ask.py` に `--chat` を追加。SDKの `client.chats.create(model=MODEL)` と `send_message()` を使い、同じセッションのuser・modelの発言を後続の質問に渡す。履歴はプロセス終了時に失われる。
   - 質問引数を渡す単発CLI、引数省略時の既定質問、`ask(question) -> str` を維持した。
   - 各応答の入力・出力トークン数を表示。本文がない場合は、その旨を表示する。
